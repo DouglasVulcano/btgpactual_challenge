@@ -11,7 +11,7 @@ Este projeto é uma solução para o desafio técnico do BTG Pactual, desenvolvi
 
 ## Arquitetura
 
-![Arquitetura do Sistema](https://raw.githubusercontent.com/DouglasVulcano/btgpactual_challenge/main/architecture-diagram.png)
+![Arquitetura do Sistema](https://raw.githubusercontent.com/DouglasVulcano/btgpactual_challenge/main/src/main/architecture-diagram.png)
 
 O projeto implementa uma arquitetura hexagonal com as seguintes camadas:
 
