@@ -1,8 +1,10 @@
-package br.com.vulcanodev.btgpactual_challenge.domain.model;
+package br.com.vulcanodev.btgpactual_challenge.application.entities;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -17,12 +19,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "orders")
-public class OrderItemEntity {
+public class OrderEntity {
     @Id
     private Long id;
-    private String product;
-    private Integer quantity;
+
+    @Indexed(name = "customer_id_index")
+    private Long customerId;
 
     @Field(targetType = FieldType.DECIMAL128)
-    private BigDecimal price;
+    private BigDecimal total;
+    private List<OrderItemEntity> items;
 }

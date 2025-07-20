@@ -1,4 +1,4 @@
-package br.com.vulcanodev.btgpactual_challenge.application.dto.rabbitMq;
+package br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq;
 
 import java.math.BigDecimal;
 
