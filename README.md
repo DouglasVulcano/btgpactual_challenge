@@ -7,7 +7,7 @@
 ![Docker](https://img.shields.io/badge/Docker-✓-blue)
 ![Maven](https://img.shields.io/badge/Maven-4.0.0-red)
 
-Este projeto é uma solução para o desafio técnico do BTG Pactual, desenvolvido em Java com Spring Boot, seguindo os princípios da **Arquitetura Hexagonal** e **Domain Driven Design (DDD)**.
+Este projeto é uma solução para o [Desafio Técnico do BTG Pactual](https://brunograna.notion.site/Desafio-Backend-BTG-Pactual-Build-Run-3f48048e3e594fbea580c006eac6ff08), desenvolvido em Java com Spring Boot, seguindo os princípios da **Arquitetura Hexagonal** e **Domain Driven Design (DDD)**.
 
 ## Arquitetura
 
@@ -37,35 +37,6 @@ O projeto implementa uma arquitetura hexagonal com as seguintes camadas:
   - `BeansConfig` - Configuração de injeção de dependências
   - `RabbitMqConfig` - Configuração do RabbitMQ
 
-### 🔄 Fluxo Arquitetural (Hexagonal)
-
-```
-1. RabbitMQ → OrderCreatedListener (Application)
-2. DTO → OrderMapper.eventToOrderModel() → Order (Domain)
-3. OrderServicePort.saveOrder(Order) (Domain Port)
-4. OrderService.saveOrder() (Domain Service)
-5. OrderRepositoryPort.saveOrder() (Domain Port)
-6. OrderMongoPort.saveOrder() (Application Adapter)
-7. Order → OrderMapper.toEntity() → OrderEntity (Data)
-8. MongoDB Repository → Database
-```
-
-### ✅ Princípios Hexagonais Seguidos
-
-- **Independência do Domínio**: Zero dependências externas no domínio
-- **Modelos Puros**: Entidades sem anotações de framework
-- **Ports & Adapters**: Domínio define contratos, infraestrutura implementa
-- **Inversão de Dependências**: Application → Domain ← Infrastructure
-- **Testabilidade**: Domínio isolado e facilmente testável
-
-## 🚀 Funcionalidades
-
-- **Processamento de Pedidos**: Recebe eventos de criação de pedidos via RabbitMQ
-- **API REST**: Endpoints para consulta de pedidos
-- **Persistência**: Armazenamento em MongoDB
-- **Mensageria**: Integração com RabbitMQ para processamento assíncrono
-- **Containerização**: Deploy com Docker Compose
-
 ## 📋 Pré-requisitos
 
 - Docker
@@ -94,12 +65,6 @@ RABBITMQ_DEFAULT_PASS=guest
 ## 🐳 Como Executar
 
 ### Execução com Docker (Recomendado)
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/DouglasVulcano/btgpactual_challenge.git
-   cd btgpactual_challenge
-   ```
 
 2. Configure o arquivo `.env` (copie do `.env.example`):
    ```bash
@@ -224,27 +189,6 @@ docker-compose logs -f rabbitmq
 docker-compose logs -f mongo
 ```
 
-## 🏛️ Princípios Arquiteturais
-
-### 🖆 Arquitetura Hexagonal (Ports & Adapters)
-
-**IMPLEMENTAÇÃO PERFEITA:**
-- ✅ **Domínio 100% Puro**: Zero dependências externas (Spring, MongoDB, etc.)
-- ✅ **Ports (Interfaces)**: `OrderServicePort`, `OrderRepositoryPort` definem contratos
-- ✅ **Adapters (Implementações)**: `OrderMongoPort` implementa ports do domínio
-- ✅ **Inversão de Dependências**: Application → Domain ← Infrastructure
-- ✅ **Testabilidade Máxima**: Domínio isolado, fácil mock dos adapters
-
-### 🏢 Domain Driven Design (DDD)
-
-**ESTRUTURA DDD CORRETA:**
-- ✅ **Entidades de Domínio**: `Order`, `OrderItem` sem anotações
-- ✅ **Value Objects**: `OrderItem` como objeto de valor
-- ✅ **Serviços de Domínio**: `OrderService` com regras de negócio
-- ✅ **Repositórios**: Interfaces no domínio, implementações na aplicação
-- ✅ **Linguagem Ubíqua**: Terminologia consistente (Order, Customer, Item)
-
-**AVALIAÇÃO ARQUITETURAL: 9.5/10** 🎆
 
 ## 🛠️ Stack Tecnológica
 
@@ -306,7 +250,7 @@ src/
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/DouglasVulcano/btgpactual_challenge/blob/main/LICENSE) para mais detalhes.
 
 ## 👨‍💻 Autor
 
