@@ -1,8 +1,8 @@
 package br.com.vulcanodev.btgpactual_challenge.application.listener;
 
-import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderCreatedEventDto;
+import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderEventDto;
 import br.com.vulcanodev.btgpactual_challenge.application.mappers.OrderMapper;
-import br.com.vulcanodev.btgpactual_challenge.config.RabbitMqConfig;
+import br.com.vulcanodev.btgpactual_challenge.infrastructure.config.RabbitMqConfig;
 import br.com.vulcanodev.btgpactual_challenge.domain.ports.OrderServicePort;
 import br.com.vulcanodev.btgpactual_challenge.domain.model.Order;
 
@@ -23,7 +23,7 @@ public class OrderCreatedListener {
     }
 
     @RabbitListener(queues = RabbitMqConfig.ORDER_CREATED_QUEUE)
-    public void listen(OrderCreatedEventDto orderEvent) {
+    public void listen(OrderEventDto orderEvent) {
         try {
             logger.info("Message consumed for order: {}", orderEvent);
             Order savedOrder = orderServicePort.saveOrder(OrderMapper.eventToOrderModel(orderEvent));

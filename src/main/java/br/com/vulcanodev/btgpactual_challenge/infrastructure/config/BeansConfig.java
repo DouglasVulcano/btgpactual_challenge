@@ -1,4 +1,4 @@
-package br.com.vulcanodev.btgpactual_challenge.infrastructure;
+package br.com.vulcanodev.btgpactual_challenge.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

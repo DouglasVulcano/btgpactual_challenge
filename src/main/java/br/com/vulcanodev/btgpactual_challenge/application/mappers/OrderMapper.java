@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderCreatedEventDto;
+import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderEventDto;
 import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderItemEventDto;
 import br.com.vulcanodev.btgpactual_challenge.application.entities.OrderEntity;
 import br.com.vulcanodev.btgpactual_challenge.application.entities.OrderItemEntity;
@@ -27,13 +27,13 @@ public class OrderMapper {
                 OrderItemMapper.toModelList(entity.getItems()));
     }
 
-    public static Order eventToOrderModel(OrderCreatedEventDto orderCreatedEventDto) {
-        if (orderCreatedEventDto == null) {
+    public static Order eventToOrderModel(OrderEventDto orderEventDto) {
+        if (orderEventDto == null) {
             return null;
         }
-        return new Order(orderCreatedEventDto.codigoPedido(), orderCreatedEventDto.codigoCliente(),
-                calculateTotal(orderCreatedEventDto.itens()),
-                OrderItemMapper.eventToModelList(orderCreatedEventDto.itens()));
+        return new Order(orderEventDto.codigoPedido(), orderEventDto.codigoCliente(),
+                calculateTotal(orderEventDto.itens()),
+                OrderItemMapper.eventToModelList(orderEventDto.itens()));
     }
 
     public static OrderItemEntity toOrderItemEntity(OrderItemEventDto itemDto) {

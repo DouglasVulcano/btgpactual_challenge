@@ -1,4 +1,4 @@
-package br.com.vulcanodev.btgpactual_challenge.config;
+package br.com.vulcanodev.btgpactual_challenge.infrastructure.config;
 
 import org.springframework.amqp.core.Declarable;
 import org.springframework.amqp.core.Queue;
