@@ -24,9 +24,15 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=default
       - SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
 
   mongo-express:
     image: mongo-express:latest
