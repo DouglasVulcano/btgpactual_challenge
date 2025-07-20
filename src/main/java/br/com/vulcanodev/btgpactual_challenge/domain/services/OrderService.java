@@ -1,8 +1,12 @@
-package br.com.vulcanodev.btgpactual_challenge.domain.applications.services;
+package br.com.vulcanodev.btgpactual_challenge.domain.services;
 
-import br.com.vulcanodev.btgpactual_challenge.domain.applications.ports.OrderRepositoryPort;
-import br.com.vulcanodev.btgpactual_challenge.domain.applications.ports.OrderServicePort;
+import br.com.vulcanodev.btgpactual_challenge.domain.ports.OrderRepositoryPort;
+import br.com.vulcanodev.btgpactual_challenge.domain.ports.OrderServicePort;
+
+import java.util.List;
+
 import br.com.vulcanodev.btgpactual_challenge.domain.model.Order;
+
 
 public class OrderService implements OrderServicePort {
 
@@ -20,5 +24,10 @@ public class OrderService implements OrderServicePort {
     @Override
     public Order findById(Long orderId) {
         return this.orderRepositoryPort.findById(orderId);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return this.orderRepositoryPort.findAll();
     }
 }

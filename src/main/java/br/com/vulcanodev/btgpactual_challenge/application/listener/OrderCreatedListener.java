@@ -1,10 +1,9 @@
 package br.com.vulcanodev.btgpactual_challenge.application.listener;
 
 import br.com.vulcanodev.btgpactual_challenge.application.dtos.rabbitMq.OrderCreatedEventDto;
-import br.com.vulcanodev.btgpactual_challenge.application.entities.OrderEntity;
 import br.com.vulcanodev.btgpactual_challenge.application.mappers.OrderMapper;
 import br.com.vulcanodev.btgpactual_challenge.config.RabbitMqConfig;
-import br.com.vulcanodev.btgpactual_challenge.domain.applications.ports.OrderServicePort;
+import br.com.vulcanodev.btgpactual_challenge.domain.ports.OrderServicePort;
 import br.com.vulcanodev.btgpactual_challenge.domain.model.Order;
 
 import org.slf4j.Logger;

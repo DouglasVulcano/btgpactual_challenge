@@ -1,19 +1,23 @@
 package br.com.vulcanodev.btgpactual_challenge.application.repositories.implementations;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.vulcanodev.btgpactual_challenge.application.entities.OrderEntity;
 import br.com.vulcanodev.btgpactual_challenge.application.mappers.OrderMapper;
 import br.com.vulcanodev.btgpactual_challenge.application.repositories.OrderRepository;
-import br.com.vulcanodev.btgpactual_challenge.domain.applications.ports.OrderRepositoryPort;
+import br.com.vulcanodev.btgpactual_challenge.domain.ports.OrderRepositoryPort;
 import br.com.vulcanodev.btgpactual_challenge.domain.model.Order;
 
 @Repository
-public class OrderRepositoryImpl implements OrderRepositoryPort {
+public class OrderMongoPort implements OrderRepositoryPort {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+
+    public OrderMongoPort(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @Override
     public Order saveOrder(Order order) {
@@ -27,5 +31,13 @@ public class OrderRepositoryImpl implements OrderRepositoryPort {
         OrderEntity orderEntity = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
         return OrderMapper.toModel(orderEntity);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        List<OrderEntity> orderEntities = orderRepository.findAll();
+        return orderEntities.stream()
+                .map(OrderMapper::toModel)
+                .toList();
     }
 }
