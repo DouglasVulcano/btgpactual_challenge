@@ -16,7 +16,21 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER:-guest}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS:-guest}"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 25s
+      timeout: 10s
+      retries: 5
+      start_period: 25s
   app:
     build: .
     ports:
@@ -47,22 +61,6 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: unless-stopped
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER:-guest}"
-      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS:-guest}"
-    healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
 
 volumes:
   mongo-data:
