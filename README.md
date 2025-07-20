@@ -11,9 +11,7 @@ Este projeto é uma solução para o desafio técnico do BTG Pactual, desenvolvi
 
 ## Arquitetura
 
-![Arquitetura do Sistema](./diagrams/codeviz-diagram-2025-07-20T16-15-41.drawio)
-
-> 💡 **Visualização do Diagrama**: Para melhor visualização, abra o arquivo `diagrams/codeviz-diagram-2025-07-20T16-15-41.drawio` no [Draw.io](https://app.diagrams.net/) ou use a [visualização online](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/DouglasVulcano/btgpactual_challenge/main/diagrams/codeviz-diagram-2025-07-20T16-15-41.drawio)
+![Arquitetura do Sistema](https://raw.githubusercontent.com/DouglasVulcano/btgpactual_challenge/main/architecture-diagram.png)
 
 O projeto implementa uma arquitetura hexagonal com as seguintes camadas:
 
